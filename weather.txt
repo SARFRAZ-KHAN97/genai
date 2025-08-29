@@ -1,0 +1,1 @@
+"The current weather in Lucknow is: Light rain with thunderstorm, rain with thunderstorm +26øC.\nThe current weather in Greater Noida is: Mist +27øC." 
