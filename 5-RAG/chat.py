@@ -2,8 +2,13 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from dotenv import load_dotenv
 import os
+from openai import OpenAI
 
 load_dotenv()
+
+client= OpenAI(
+    base_url= "https://generativelanguage.googleapis.com/v1beta/openai/"
+)
 
 
 #vector embedding
@@ -50,5 +55,17 @@ SYSTEM_PROMPT= f"""
 """
 
 
-print("SYSTEM_PROMPT: ", SYSTEM_PROMPT)
+#print("SYSTEM_PROMPT: ", SYSTEM_PROMPT)
 
+
+
+response= client.chat.completions.create(
+    model= "gemini-2.5-pro",
+    messages= [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": query}
+    ]
+)
+
+
+print(f"🤖: {response.choices[0].message.content}")
