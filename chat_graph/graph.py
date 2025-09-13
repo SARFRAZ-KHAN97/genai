@@ -4,7 +4,9 @@ from langgraph.graph import add_messages
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.mongodb import MongoDBSaver
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 
 
@@ -13,8 +15,7 @@ class State(TypedDict):
 
 
 
-llm= init_chat_model(model_provider= "google_genai", model="gemini-2.5-pro", api_key= "AIzaSyAC4OWEO_KkH_DKY1a53aHr6AydUuRkNMo")
-
+llm= init_chat_model(model_provider= "google_genai", model="gemini-2.5-pro", api_key= os.getenv("OPENAI_API_KEY"))
 
 
 def chat_node(state: State):
