@@ -176,10 +176,11 @@ def main():
         "isCoding_question": False
     }
 
-    graph_result= graph.invoke(initial_state)
+    #graph_result= graph.invoke(initial_state)
+    #print("graph result:", graph_result)
 
-    print("graph result:", graph_result)
-
+    for event in graph.stream(initial_state):
+        print("🤖: ", event)
 
 
 main()
